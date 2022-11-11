@@ -39,6 +39,7 @@ init_loop:
     
 
 startsearch:
+	la 		$t6, primes
 	move	$t0, $t4				# reset pointer
 	subi	$t2, $t2, 999			# reset counter
 	bne 	primes($t0), 1001, search		# if number not proven composite by being set to 1001 then search
@@ -46,6 +47,7 @@ startsearch:
     
 
 search:
+	la		$t6, primes
 	bne 	primes($t0), 1001, breaksearch	# if the number is too big then break the search
 	add 	$t0, $t0, $t4				# move the ptr forward by the current prime
 	sb		$t2, primes($t0)
@@ -53,6 +55,7 @@ search:
 	
 
 breaksearch:
+	la		$t6, primes
 	bgt 	$t4, 31, print			# if prime is larger than 31, we are done because sqrt 1000 ~= 31
 	addi 	$t4, $t4, 1				# increment current prime and try again
 	j 		startsearch
